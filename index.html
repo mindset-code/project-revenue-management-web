@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Management Dashboard & Pricing Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>💰 Revenue Management Dashboard</h1>
+            <p>Dynamic Pricing Simulator & Performance Analytics</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel: Dashboard -->
+            <section class="dashboard">
+                <h2>Current Performance Metrics</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Average Daily Rate (ADR)</h3>
+                        <p class="metric-value" id="adr">$150.00</p>
+                        <p class="metric-label">Per Room</p>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Occupancy Rate</h3>
+                        <p class="metric-value" id="occupancy">75%</p>
+                        <p class="metric-label">Rooms Booked</p>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>RevPAR</h3>
+                        <p class="metric-value" id="revpar">$112.50</p>
+                        <p class="metric-label">Revenue Per Available Room</p>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Total Revenue</h3>
+                        <p class="metric-value" id="totalRevenue">$33,750</p>
+                        <p class="metric-label">Daily Revenue</p>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="chart-section">
+                    <h3>Revenue Projection (7 Days)</h3>
+                    <canvas id="revenueChart" width="400" height="200"></canvas>
+                </div>
+            </section>
+
+            <!-- Right Panel: Simulator -->
+            <section class="simulator">
+                <h2>Pricing Simulator</h2>
+                <p class="simulator-subtitle">Adjust parameters to see real-time impact on revenue</p>
+
+                <form id="simulatorForm">
+                    <!-- Room Count -->
+                    <div class="form-group">
+                        <label for="roomCount">Total Rooms Available:</label>
+                        <input type="number" id="roomCount" min="10" max="500" value="300" step="10">
+                        <span class="slider-value" id="roomCountValue">300</span>
+                    </div>
+
+                    <!-- Base Price -->
+                    <div class="form-group">
+                        <label for="basePrice">Base Price per Room ($):</label>
+                        <input type="range" id="basePrice" min="50" max="300" value="150" step="5">
+                        <span class="slider-value" id="basePriceValue">$150</span>
+                    </div>
+
+                    <!-- Occupancy Rate -->
+                    <div class="form-group">
+                        <label for="occupancyRate">Target Occupancy Rate (%):</label>
+                        <input type="range" id="occupancyRate" min="30" max="100" value="75" step="5">
+                        <span class="slider-value" id="occupancyRateValue">75%</span>
+                    </div>
+
+                    <!-- Discount Factor -->
+                    <div class="form-group">
+                        <label for="discountFactor">Discount Factor (%):</label>
+                        <input type="range" id="discountFactor" min="0" max="50" value="0" step="5">
+                        <span class="slider-value" id="discountFactorValue">0%</span>
+                    </div>
+
+                    <!-- Demand Multiplier -->
+                    <div class="form-group">
+                        <label for="demandMultiplier">Demand Multiplier:</label>
+                        <input type="range" id="demandMultiplier" min="0.5" max="2" value="1" step="0.1">
+                        <span class="slider-value" id="demandMultiplierValue">1.0x</span>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary" onclick="calculateRevenue()">Calculate Revenue</button>
+                        <button type="reset" class="btn btn-secondary" onclick="resetForm()">Reset to Defaults</button>
+                    </div>
+                </form>
+
+                <!-- Results Section -->
+                <div class="results-section">
+                    <h3>Simulation Results</h3>
+                    <div class="result-item">
+                        <span>Effective Price per Room:</span>
+                        <strong id="effectivePrice">$150.00</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Projected Daily Revenue:</span>
+                        <strong id="projectedRevenue">$33,750</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Projected RevPAR:</span>
+                        <strong id="projectedRevPAR">$112.50</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Revenue Change vs. Current:</span>
+                        <strong id="revenueChange" class="neutral">0%</strong>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Revenue Management System. Built with HTML5, CSS3 & JavaScript.</p>
+            <p>Project by Mindset & Code | <a href="https://github.com/mindset-code" target="_blank">GitHub Profile</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
