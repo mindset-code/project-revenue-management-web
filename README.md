@@ -1,136 +1,160 @@
-# 💰 Revenue Management Dashboard & Pricing Simulator
+# Revenue Management Dashboard & Pricing Simulator
+
+> **Web Development Portfolio Project** · Vanilla JS · RevOps · Interactive simulator
+> **Status:** Finished · Portfolio showcase (2026-04)
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-proyectos--personales.web.app-60a5fa?style=for-the-badge&logo=firebase&logoColor=white)](https://proyectos-personales.web.app)
+[![Stack](https://img.shields.io/badge/Stack-HTML%2FCSS%2FJS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](.)
+[![Domain](https://img.shields.io/badge/Domain-Revenue%20Management-003366?style=for-the-badge)](.)
+
+---
+
+## Project Status
+
+| Phase | Status |
+|---|---|
+| Dashboard UI con KPIs en tiempo real | Done |
+| Pricing simulator interactivo (5 parámetros) | Done |
+| Canvas chart de proyección 7 días | Done |
+| Responsive design (desktop/tablet/mobile) | Done |
+
+**Current phase:** portfolio showcase — ejemplo de stack minimal con lógica de negocio completa.
+
+---
 
 ## Project Overview
 
-This is a **fully functional web application** that demonstrates expertise in **Web Development** combined with **Revenue Management** business logic. The dashboard provides real-time revenue analytics and an interactive pricing simulator that allows users to adjust key parameters and observe their impact on business metrics.
+Web app completamente funcional que combina **Web Development** con lógica de **Revenue Management**. El dashboard muestra métricas de ingresos en tiempo real y un **simulador interactivo** permite ajustar parámetros y observar el impacto instantáneo en KPIs de hospitalidad.
 
-This project is ideal for roles that require both technical development skills and business acumen, such as **Revenue Operations (RevOps)**, **Business Intelligence**, or **Full-Stack Development** positions.
+Ideal para roles que combinan desarrollo técnico con *business acumen*: **Revenue Operations**, **Business Intelligence** o **Full-Stack**.
+
+---
 
 ## Key Features
 
-### 1. **Performance Dashboard**
-The left panel displays critical revenue metrics updated in real-time:
-- **Average Daily Rate (ADR):** The average price per room
-- **Occupancy Rate:** Percentage of rooms booked
-- **RevPAR:** Revenue Per Available Room (key hospitality metric)
-- **Total Daily Revenue:** Aggregate revenue calculation
-- **7-Day Revenue Projection Chart:** Visual trend analysis with dynamic bar charts
+### Performance Dashboard (panel izquierdo)
 
-### 2. **Interactive Pricing Simulator**
-The right panel allows users to adjust business parameters and instantly see the impact:
-- **Total Rooms Available:** Adjust the inventory size (10-500 rooms)
-- **Base Price per Room:** Set the baseline pricing ($50-$300)
-- **Target Occupancy Rate:** Define booking targets (30-100%)
-- **Discount Factor:** Apply promotional discounts (0-50%)
-- **Demand Multiplier:** Model demand fluctuations (0.5x-2x)
+Métricas de ingreso actualizadas en tiempo real:
+- **ADR** (Average Daily Rate) — precio medio por habitación
+- **Occupancy Rate** — % de habitaciones ocupadas
+- **RevPAR** (Revenue Per Available Room) — KPI clave en hospitality
+- **Total Daily Revenue** — ingreso agregado del día
+- **7-Day Revenue Projection Chart** — tendencia visual en canvas
 
-### 3. **Real-Time Results**
-The simulator calculates and displays:
-- **Effective Price:** Price after discounts and demand adjustments
-- **Projected Daily Revenue:** Total revenue based on current parameters
-- **Projected RevPAR:** Revenue efficiency metric
-- **Revenue Change:** Percentage change vs. baseline (with color coding: green for positive, red for negative)
+### Interactive Pricing Simulator (panel derecho)
 
-### 4. **Professional UI/UX**
-- **Responsive Design:** Works seamlessly on desktop, tablet, and mobile devices
-- **Modern Aesthetics:** Gradient backgrounds, smooth animations, and intuitive controls
-- **Interactive Charts:** Canvas-based revenue projection charts with real-time updates
-- **Accessibility:** Clear labels, high contrast, and keyboard-friendly controls
+Ajusta parámetros y ve impacto inmediato:
 
-## Technical Stack
+| Parámetro | Rango |
+|---|---|
+| Total Rooms Available | 10 – 500 |
+| Base Price per Room | $50 – $300 |
+| Target Occupancy Rate | 30% – 100% |
+| Discount Factor | 0% – 50% |
+| Demand Multiplier | 0.5× – 2× |
 
-| Technology | Purpose |
-| :--- | :--- |
-| **HTML5** | Semantic markup and structure |
-| **CSS3** | Responsive design with gradients, flexbox, and grid layout |
-| **JavaScript (ES6+)** | Interactive logic, calculations, and chart rendering |
-| **Canvas API** | Dynamic chart rendering for revenue projections |
+### Real-Time Results
+
+- **Effective Price** tras descuentos y ajuste por demanda
+- **Projected Daily Revenue** bajo los parámetros actuales
+- **Projected RevPAR**
+- **Revenue Change %** vs baseline (verde = positivo, rojo = negativo)
+
+---
+
+## Business Logic
+
+### Fórmula de ingresos
+
+```
+Effective Price  = Base Price × (1 − Discount Factor) × Demand Multiplier
+Booked Rooms    = Total Rooms × Occupancy Rate
+Daily Revenue   = Booked Rooms × Effective Price
+RevPAR          = Daily Revenue / Total Rooms
+```
+
+### Use cases
+
+- **Revenue Managers** — optimizar estrategia de precios y ocupación
+- **Business Analysts** — modelar escenarios de ingreso
+- **Operations Teams** — entender la relación precio–ocupación–revenue
+- **Executives** — decisiones basadas en datos sobre capacity planning
+
+---
+
+## Skills Demostradas
+
+- **Frontend Development:** HTML5, CSS3 (Flexbox, Grid, gradientes), diseño responsive
+- **JavaScript ES6+:** event listeners, DOM manipulation, cálculos en tiempo real
+- **Data Visualization:** Canvas API para charts dinámicos
+- **Business Logic:** fórmulas Revenue Management + pricing optimization
+- **UX:** controles intuitivos, feedback en tiempo real, código con color
+- **Code Quality:** JS limpio, comentado, mantenible
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Markup | HTML5 semántico |
+| Style | CSS3 (Flexbox + Grid + gradientes) |
+| Logic | JavaScript ES6+ |
+| Charts | Canvas API (sin librerías externas) |
+
+---
 
 ## Project Structure
 
 ```
 project-revenue-management-web/
-├── index.html          # Main HTML file with dashboard and simulator
-├── styles.css          # Complete styling (responsive, modern design)
-├── script.js           # JavaScript logic (calculations, interactivity, charts)
-└── README.md           # This file
+├── index.html          # Dashboard + simulador
+├── styles.css          # Estilos responsive
+├── script.js           # Lógica + charts
+└── README.md
 ```
-
-## How to Use
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/mindset-code/project-revenue-management-web.git
-   cd project-revenue-management-web
-   ```
-
-2. **Open in a browser:**
-   Simply open `index.html` in any modern web browser (Chrome, Firefox, Safari, Edge).
-
-3. **Interact with the simulator:**
-   - Adjust the sliders and input fields on the right panel
-   - Watch the dashboard metrics and chart update in real-time
-   - Click "Calculate Revenue" to refresh calculations
-   - Click "Reset to Defaults" to return to initial values
-
-## Business Logic Explained
-
-### Revenue Calculation Formula
-
-```
-Effective Price = Base Price × (1 - Discount Factor) × Demand Multiplier
-Booked Rooms = Total Rooms × Occupancy Rate
-Daily Revenue = Booked Rooms × Effective Price
-RevPAR = Daily Revenue / Total Rooms
-```
-
-### Use Cases
-
-This tool is valuable for:
-- **Revenue Managers:** Optimize pricing strategies and occupancy targets
-- **Business Analysts:** Model revenue scenarios and forecast impact
-- **Operations Teams:** Understand the relationship between pricing, occupancy, and revenue
-- **Executives:** Make data-driven decisions on pricing and capacity planning
-
-## Key Metrics Explained
-
-| Metric | Definition | Importance |
-| :--- | :--- | :--- |
-| **ADR** | Average Daily Rate per room | Indicates pricing power and market positioning |
-| **Occupancy Rate** | Percentage of rooms booked | Measures demand and capacity utilization |
-| **RevPAR** | Revenue Per Available Room | Most important hospitality KPI; combines ADR and occupancy |
-| **Total Revenue** | Daily aggregate revenue | Bottom-line business performance |
-
-## Features Demonstrated
-
-- **Frontend Development:** HTML5, CSS3 (Flexbox, Grid, Gradients), Responsive Design
-- **JavaScript Mastery:** Event listeners, DOM manipulation, real-time calculations
-- **Data Visualization:** Canvas API for dynamic chart rendering
-- **Business Logic:** Revenue management formulas and pricing optimization
-- **User Experience:** Intuitive controls, real-time feedback, color-coded results
-- **Code Quality:** Clean, well-commented, and maintainable JavaScript
-
-## Future Enhancements
-
-Potential improvements for a production version:
-- Backend integration with a database (Node.js/Express, Python/Django)
-- User authentication and saved scenarios
-- Historical data analysis and trend forecasting
-- Export functionality (CSV, PDF reports)
-- Multi-property management support
-- Advanced pricing algorithms (dynamic pricing, ML-based optimization)
-
-## Author
-
-**Mindset & Code**  
-LinkedIn: [linkedin.com/company/mindset-codeú-027a3a120](https://www.linkedin.com/company/mindset-code/)  
-GitHub: [@mindset-code](https://github.com/mindset-code)
-
-## License
-
-This project is open source and available under the MIT License.
 
 ---
 
-**Built with:** HTML5 | CSS3 | JavaScript ES6+  
-**Last Updated:** January 2025
+## How to Use
+
+```bash
+git clone https://github.com/mindset-code/project-revenue-management-web.git
+cd project-revenue-management-web
+# Abre index.html en cualquier navegador moderno
+```
+
+1. Ajusta sliders / inputs del panel derecho
+2. Observa KPIs y chart actualizándose en tiempo real
+3. **Calculate Revenue** — refresca cálculos
+4. **Reset to Defaults** — vuelve a valores iniciales
+
+---
+
+## Future Enhancements
+
+Posibles mejoras para versión de producción:
+- Backend con DB (Node.js/Express · Python/Django)
+- Autenticación y escenarios guardados
+- Análisis histórico y forecasting
+- Exportar reportes (CSV / PDF)
+- Multi-property management
+- Algoritmos de *dynamic pricing* basados en ML
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Links
+
+- **Portfolio:** [proyectos-personales.web.app](https://proyectos-personales.web.app)
+- **LinkedIn:** [Mindset & Code](https://www.linkedin.com/company/mindset-code/?locale=en_US)
+- **Email:** contacto@mindset-code.com
+
+---
+
+*Built by [Mindset & Code](https://github.com/mindset-code) · Data & BI Analyst · MBA · ISC2 CC*
