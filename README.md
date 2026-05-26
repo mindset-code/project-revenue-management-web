@@ -5,7 +5,7 @@
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-proyectos--personales.web.app-60a5fa?style=for-the-badge&logo=firebase&logoColor=white)](https://proyectos-personales.web.app)
 [![Stack](https://img.shields.io/badge/Stack-HTML%2FCSS%2FJS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](.)
-[![Domain](https://img.shields.io/badge/Domain-Revenue%20Management-003366?style=for-the-badge)](.)
+[![Wiki](https://img.shields.io/badge/Wiki-Documentación-fbbf24?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mindset-code/project-revenue-management-web/wiki)
 
 ---
 
@@ -37,7 +37,7 @@ Ideal para roles que combinan desarrollo técnico con *business acumen*: **Reven
 Métricas de ingreso actualizadas en tiempo real:
 - **ADR** (Average Daily Rate) — precio medio por habitación
 - **Occupancy Rate** — % de habitaciones ocupadas
-- **RevPAR** (Revenue Per Available Room) — KPI clave en hospitality
+- **RevPAR** (Revenue Per Available Room) — KPI clave en hospitalidad
 - **Total Daily Revenue** — ingreso agregado del día
 - **7-Day Revenue Projection Chart** — tendencia visual en canvas
 
@@ -53,33 +53,6 @@ Ajusta parámetros y ve impacto inmediato:
 | Discount Factor | 0% – 50% |
 | Demand Multiplier | 0.5× – 2× |
 
-### Real-Time Results
-
-- **Effective Price** tras descuentos y ajuste por demanda
-- **Projected Daily Revenue** bajo los parámetros actuales
-- **Projected RevPAR**
-- **Revenue Change %** vs baseline (verde = positivo, rojo = negativo)
-
----
-
-## Business Logic
-
-### Fórmula de ingresos
-
-```
-Effective Price  = Base Price × (1 − Discount Factor) × Demand Multiplier
-Booked Rooms    = Total Rooms × Occupancy Rate
-Daily Revenue   = Booked Rooms × Effective Price
-RevPAR          = Daily Revenue / Total Rooms
-```
-
-### Use cases
-
-- **Revenue Managers** — optimizar estrategia de precios y ocupación
-- **Business Analysts** — modelar escenarios de ingreso
-- **Operations Teams** — entender la relación precio–ocupación–revenue
-- **Executives** — decisiones basadas en datos sobre capacity planning
-
 ---
 
 ## Skills Demostradas
@@ -88,8 +61,7 @@ RevPAR          = Daily Revenue / Total Rooms
 - **JavaScript ES6+:** event listeners, DOM manipulation, cálculos en tiempo real
 - **Data Visualization:** Canvas API para charts dinámicos
 - **Business Logic:** fórmulas Revenue Management + pricing optimization
-- **UX:** controles intuitivos, feedback en tiempo real, código con color
-- **Code Quality:** JS limpio, comentado, mantenible
+- **UX:** controles intuitivos, feedback en tiempo real
 
 ---
 
@@ -124,33 +96,11 @@ cd project-revenue-management-web
 # Abre index.html en cualquier navegador moderno
 ```
 
-1. Ajusta sliders / inputs del panel derecho
-2. Observa KPIs y chart actualizándose en tiempo real
-3. **Calculate Revenue** — refresca cálculos
-4. **Reset to Defaults** — vuelve a valores iniciales
-
----
-
-## Future Enhancements
-
-Posibles mejoras para versión de producción:
-- Backend con DB (Node.js/Express · Python/Django)
-- Autenticación y escenarios guardados
-- Análisis histórico y forecasting
-- Exportar reportes (CSV / PDF)
-- Multi-property management
-- Algoritmos de *dynamic pricing* basados en ML
-
----
-
-## License
-
-MIT License
-
 ---
 
 ## Links
 
+- **Wiki:** [Documentación técnica](https://github.com/mindset-code/project-revenue-management-web/wiki)
 - **Portfolio:** [proyectos-personales.web.app](https://proyectos-personales.web.app)
 - **LinkedIn:** [Mindset & Code](https://www.linkedin.com/company/mindset-code)
 - **Email:** contacto@mindset-code.com
