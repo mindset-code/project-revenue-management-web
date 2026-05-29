@@ -1,107 +1,151 @@
 # Revenue Management Dashboard & Pricing Simulator
 
-> **Web Development Portfolio Project** · Vanilla JS · RevOps · Interactive simulator
-> **Status:** Finished · Portfolio showcase (2026-04)
+> **Front-end portfolio project** · Vanilla JS · RevOps · Interactive simulator
+> **Status:** Finished
+> An interactive, dependency-free web app that lets you tune room count, base price, occupancy and demand, and watch projected revenue recalculate live — Revenue Management made tangible in the browser.
+
+> 🇬🇧 **English version first.** · 🇪🇸 **La versión en español está más abajo** → [ir a Español](#-español).
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-proyectos--personales.web.app-60a5fa?style=for-the-badge&logo=firebase&logoColor=white)](https://proyectos-personales.web.app)
-[![Stack](https://img.shields.io/badge/Stack-HTML%2FCSS%2FJS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](.)
-[![Wiki](https://img.shields.io/badge/Wiki-Documentación-fbbf24?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mindset-code/project-revenue-management-web/wiki)
+[![Stack](https://img.shields.io/badge/Stack-HTML%20%C2%B7%20CSS%20%C2%B7%20Vanilla%20JS-f7df1e?style=for-the-badge&logo=javascript&logoColor=black)](.)
+[![Domain](https://img.shields.io/badge/Domain-RevOps%20%C2%B7%20Pricing-16a34a?style=for-the-badge)](.)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 ---
 
-## Project Status
+## The problem this solves
 
-| Phase | Status |
-|---|---|
-| Dashboard UI con KPIs en tiempo real | Done |
-| Pricing simulator interactivo (5 parámetros) | Done |
-| Canvas chart de proyección 7 días | Done |
-| Responsive design (desktop/tablet/mobile) | Done |
+Pricing decisions are abstract until you can *see* them. This simulator turns the levers of Revenue Management — inventory, base price, occupancy, discount and demand — into sliders, and recalculates projected revenue in real time with a live chart. It makes the trade-offs of a pricing strategy intuitive for a non-technical audience.
 
-**Current phase:** portfolio showcase — ejemplo de stack minimal con lógica de negocio completa.
+It also demonstrates clean **front-end engineering with zero frameworks**: structured vanilla JavaScript, event-driven state, and a charting layer — proof that solid UX doesn't require a heavy stack.
 
 ---
 
-## Project Overview
+## Key features
 
-Web app completamente funcional que combina **Web Development** con lógica de **Revenue Management**. El dashboard muestra métricas de ingresos en tiempo real y un **simulador interactivo** permite ajustar parámetros y observar el impacto instantáneo en KPIs de hospitalidad.
-
-Ideal para roles que combinan desarrollo técnico con *business acumen*: **Revenue Operations**, **Business Intelligence** o **Full-Stack**.
-
----
-
-## Key Features
-
-### Performance Dashboard (panel izquierdo)
-
-Métricas de ingreso actualizadas en tiempo real:
-- **ADR** (Average Daily Rate) — precio medio por habitación
-- **Occupancy Rate** — % de habitaciones ocupadas
-- **RevPAR** (Revenue Per Available Room) — KPI clave en hospitalidad
-- **Total Daily Revenue** — ingreso agregado del día
-- **7-Day Revenue Projection Chart** — tendencia visual en canvas
-
-### Interactive Pricing Simulator (panel derecho)
-
-Ajusta parámetros y ve impacto inmediato:
-
-| Parámetro | Rango |
-|---|---|
-| Total Rooms Available | 10 – 500 |
-| Base Price per Room | $50 – $300 |
-| Target Occupancy Rate | 30% – 100% |
-| Discount Factor | 0% – 50% |
-| Demand Multiplier | 0.5× – 2× |
+- **Live recalculation** — every input updates projected revenue instantly.
+- **Interactive revenue chart** — visual projection that responds to the inputs.
+- **No build, no dependencies** — open `index.html` and it runs.
+- **Tunable levers** — room count, base price, occupancy rate, discount factor and demand multiplier.
 
 ---
 
-## Skills Demostradas
-
-- **Frontend Development:** HTML5, CSS3 (Flexbox, Grid, gradientes), diseño responsive
-- **JavaScript ES6+:** event listeners, DOM manipulation, cálculos en tiempo real
-- **Data Visualization:** Canvas API para charts dinámicos
-- **Business Logic:** fórmulas Revenue Management + pricing optimization
-- **UX:** controles intuitivos, feedback en tiempo real
-
----
-
-## Tech Stack
+## Tech stack
 
 | Layer | Technology |
-|---|---|
-| Markup | HTML5 semántico |
-| Style | CSS3 (Flexbox + Grid + gradientes) |
-| Logic | JavaScript ES6+ |
-| Charts | Canvas API (sin librerías externas) |
+|-------|-----------|
+| Markup | HTML5 |
+| Styling | CSS3 |
+| Logic | Vanilla JavaScript (event-driven) |
+| Charting | Chart.js |
 
 ---
 
-## Project Structure
+## Getting started
+
+```bash
+git clone https://github.com/mindset-code/project-revenue-management-web.git
+cd project-revenue-management-web
+
+# No build step — just open the file in a browser:
+xdg-open index.html      # or double-click it
+```
+
+---
+
+## Repository structure
 
 ```
 project-revenue-management-web/
-├── index.html          # Dashboard + simulador
-├── styles.css          # Estilos responsive
-├── script.js           # Lógica + charts
+├── index.html    # layout + controls
+├── script.js     # revenue logic + chart + event handling
+├── styles.css    # styling
+├── LICENSE       # MIT
 └── README.md
 ```
 
 ---
 
-## How to Use
+## License & contact
+
+Released under the **[MIT License](LICENSE)**.
+
+- **Portfolio:** [proyectos-personales.web.app](https://proyectos-personales.web.app)
+- **LinkedIn:** [Mindset & Code](https://www.linkedin.com/company/mindset-code)
+- **Email:** contacto@mindset-code.com
+
+---
+
+# 🇪🇸 Español
+
+# Revenue Management Dashboard & Pricing Simulator
+
+> **Proyecto de portafolio de Front-end** · Vanilla JS · RevOps · Simulador interactivo
+> **Estado:** Terminado
+> Una app web interactiva y sin dependencias que permite ajustar número de habitaciones, precio base, ocupación y demanda, y ver recalcularse el ingreso proyectado en vivo — el Revenue Management hecho tangible en el navegador.
+
+> 🇪🇸 Traducción al español. La versión en inglés está al inicio → [ir a English](#revenue-management-dashboard--pricing-simulator).
+
+---
+
+## El problema que resuelve
+
+Las decisiones de pricing son abstractas hasta que puedes *verlas*. Este simulador convierte las palancas del Revenue Management —inventario, precio base, ocupación, descuento y demanda— en sliders, y recalcula el ingreso proyectado en tiempo real con un gráfico en vivo. Hace intuitivos los trade-offs de una estrategia de precios para una audiencia no técnica.
+
+También demuestra **ingeniería front-end limpia sin frameworks**: JavaScript vanilla estructurado, estado dirigido por eventos y una capa de gráficos — prueba de que una buena UX no exige un stack pesado.
+
+---
+
+## Características clave
+
+- **Recálculo en vivo** — cada input actualiza el ingreso proyectado al instante.
+- **Gráfico de ingresos interactivo** — proyección visual que responde a los inputs.
+- **Sin build ni dependencias** — abre `index.html` y funciona.
+- **Palancas ajustables** — nº de habitaciones, precio base, tasa de ocupación, factor de descuento y multiplicador de demanda.
+
+---
+
+## Stack técnico
+
+| Capa | Tecnología |
+|------|-----------|
+| Marcado | HTML5 |
+| Estilos | CSS3 |
+| Lógica | JavaScript vanilla (dirigido por eventos) |
+| Gráficos | Chart.js |
+
+---
+
+## Cómo empezar
 
 ```bash
 git clone https://github.com/mindset-code/project-revenue-management-web.git
 cd project-revenue-management-web
-# Abre index.html en cualquier navegador moderno
+
+# Sin paso de build — solo abre el archivo en el navegador:
+xdg-open index.html      # o haz doble clic
 ```
 
 ---
 
-## Links
+## Estructura del repositorio
 
-- **Wiki:** [Documentación técnica](https://github.com/mindset-code/project-revenue-management-web/wiki)
-- **Portfolio:** [proyectos-personales.web.app](https://proyectos-personales.web.app)
+```
+project-revenue-management-web/
+├── index.html    # layout + controles
+├── script.js     # lógica de ingresos + gráfico + manejo de eventos
+├── styles.css    # estilos
+├── LICENSE       # MIT
+└── README.md
+```
+
+---
+
+## Licencia y contacto
+
+Publicado bajo la **[Licencia MIT](LICENSE)**.
+
+- **Portafolio:** [proyectos-personales.web.app](https://proyectos-personales.web.app)
 - **LinkedIn:** [Mindset & Code](https://www.linkedin.com/company/mindset-code)
 - **Email:** contacto@mindset-code.com
 
