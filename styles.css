@@ -299,6 +299,12 @@ body {
 .result-item {
     display: flex;
     justify-content: space-between;
+    /* The label wraps onto two lines on a narrow screen. Without a gap and a
+       shared baseline the figure ends up printed on top of the last word of
+       its own label -- "Effective Price per$150.00 Room:" -- which is exactly
+       the number the reader came here to check. */
+    align-items: baseline;
+    gap: 12px;
     padding: 10px 0;
     border-bottom: 1px solid #e0e0e0;
     font-size: 0.95rem;
@@ -315,6 +321,8 @@ body {
 .result-item strong {
     color: #667eea;
     font-weight: 700;
+    /* A currency amount broken across two lines reads as two amounts. */
+    white-space: nowrap;
 }
 
 .result-item strong.positive {

@@ -125,13 +125,21 @@ function drawRevenueChart() {
     // Get current revenue
     const currentRevenue = window.currentRevenue || 33750;
     
-    // Generate 7-day projection with slight variations
+    // 7-day projection.
+    //
+    // This used to be Math.random() on every redraw: since the chart is
+    // redrawn on every slider move, the curve jumped around at random and
+    // the effect of the lever you were actually moving got lost in the
+    // noise -- which is the one thing this simulator exists to show.
+    //
+    // The weekly profile is fixed and it is the shape of an urban hotel:
+    // quiet Monday to Thursday, full on Friday and Saturday, checkout
+    // Sunday. The seven factors average exactly 1.0, so the week adds up
+    // to seven times the daily revenue shown in the metrics and the chart
+    // cannot drift away from the numbers next to it.
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    const revenues = [];
-    for (let i = 0; i < 7; i++) {
-        const variation = 1 + (Math.random() - 0.5) * 0.2; // ±10% variation
-        revenues.push(currentRevenue * variation);
-    }
+    const WEEKLY_PROFILE = [0.92, 0.94, 0.97, 1.02, 1.12, 1.15, 0.88];
+    const revenues = WEEKLY_PROFILE.map(factor => currentRevenue * factor);
     
     // Chart dimensions
     const padding = 40;
