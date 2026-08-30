@@ -11,6 +11,10 @@
 [![Domain](https://img.shields.io/badge/Domain-RevOps%20%C2%B7%20Pricing-16a34a?style=for-the-badge)](.)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
+[![Pricing simulator running: sliders recalculating RevPAR and daily revenue live](docs/captura.jpg)](https://proyectos-mindset-code.web.app/revenue)
+
+*[Open the live demo](https://proyectos-mindset-code.web.app/revenue)*
+
 ---
 
 ## The problem this solves
