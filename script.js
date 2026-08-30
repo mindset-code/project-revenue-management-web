@@ -14,12 +14,37 @@ const initialValues = {
 // Chart instance (for revenue projection)
 let chartInstance = null;
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    setupEventListeners();
-    calculateRevenue();
-    drawRevenueChart();
-});
+// 7-day projection profile.
+//
+// This used to be Math.random() on every redraw: since the chart is redrawn on
+// every slider move, the curve jumped around at random and the effect of the
+// lever you were actually moving got lost in the noise -- which is the one
+// thing this simulator exists to show.
+//
+// The weekly profile is fixed and it is the shape of an urban hotel: quiet
+// Monday to Thursday, full on Friday and Saturday, checkout Sunday. The seven
+// factors add up to exactly 7, so the week totals seven times the daily
+// revenue shown in the metrics and the chart cannot drift away from the
+// numbers printed next to it. That sum is pinned by a test.
+const WEEKLY_PROFILE = [0.92, 0.94, 0.97, 1.02, 1.12, 1.15, 0.88];
+const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+function weeklyProjection(dailyRevenue) {
+    return WEEKLY_PROFILE.map(factor => dailyRevenue * factor);
+}
+
+// Initialize on page load.
+//
+// Guarded because the test runner loads this same file in Node, where there is
+// no document. In the browser nothing changes: the listener registers exactly
+// as before.
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        setupEventListeners();
+        calculateRevenue();
+        drawRevenueChart();
+    });
+}
 
 // ============================================
 // Event Listeners
@@ -58,6 +83,56 @@ function updateSliderValue(input) {
 // Revenue Calculation Logic
 // ============================================
 
+/**
+ * The whole model of the simulator, with no DOM in sight so it can be tested.
+ *
+ * Takes the five levers already normalised (occupancy and discount as
+ * fractions, not percentages) and returns every figure the page prints.
+ *
+ * `adr` is the EFFECTIVE rate, not the base price. The panel used to print the
+ * base price as ADR while computing RevPAR from the effective one: set the
+ * discount to 20 % and the three metrics sitting side by side read ADR $150,
+ * occupancy 75 %, RevPAR $90 -- and 150 x 0.75 is 112.50, not 90. RevPAR = ADR
+ * x occupancy is the definition the industry uses; the fix is to show the rate
+ * actually being charged, which is what the revenue below is built from.
+ */
+function computeMetrics(levers) {
+    const roomCount = Number(levers.roomCount);
+    const basePrice = Number(levers.basePrice);
+    const occupancyRate = Number(levers.occupancyRate);
+    const discountFactor = Number(levers.discountFactor);
+    const demandMultiplier = Number(levers.demandMultiplier);
+
+    // A cleared number field yields NaN, and NaN spreads through every figure
+    // without raising anything: the dashboard just fills with "$NaN".
+    if (![roomCount, basePrice, occupancyRate, discountFactor, demandMultiplier]
+            .every(Number.isFinite) || roomCount <= 0) {
+        return null;
+    }
+
+    const effectivePrice = basePrice * (1 - discountFactor) * demandMultiplier;
+    const bookedRooms = roomCount * occupancyRate;
+    const dailyRevenue = bookedRooms * effectivePrice;
+    const revpar = dailyRevenue / roomCount;
+
+    // Baseline = same hotel, same occupancy, list price and no demand premium.
+    const baselineRevenue = roomCount * occupancyRate * basePrice;
+    const revenueChange = baselineRevenue === 0
+        ? 0
+        : ((dailyRevenue - baselineRevenue) / baselineRevenue) * 100;
+
+    return {
+        adr: effectivePrice,
+        occupancyRate: occupancyRate,
+        bookedRooms: bookedRooms,
+        effectivePrice: effectivePrice,
+        dailyRevenue: dailyRevenue,
+        revpar: revpar,
+        baselineRevenue: baselineRevenue,
+        revenueChange: revenueChange,
+    };
+}
+
 function calculateRevenue() {
     // Get form values
     const roomCount = parseFloat(document.getElementById('roomCount').value);
@@ -65,25 +140,25 @@ function calculateRevenue() {
     const occupancyRate = parseFloat(document.getElementById('occupancyRate').value) / 100;
     const discountFactor = parseFloat(document.getElementById('discountFactor').value) / 100;
     const demandMultiplier = parseFloat(document.getElementById('demandMultiplier').value);
-    
-    // Calculate effective price (with discount)
-    const effectivePrice = basePrice * (1 - discountFactor) * demandMultiplier;
-    
-    // Calculate booked rooms
-    const bookedRooms = roomCount * occupancyRate;
-    
-    // Calculate daily revenue
-    const dailyRevenue = bookedRooms * effectivePrice;
-    
-    // Calculate RevPAR (Revenue Per Available Room)
-    const revpar = dailyRevenue / roomCount;
-    
-    // Calculate current baseline revenue (for comparison)
-    const baselineRevenue = roomCount * occupancyRate * basePrice;
-    const revenueChange = ((dailyRevenue - baselineRevenue) / baselineRevenue) * 100;
-    
+
+    const m = computeMetrics({
+        roomCount: roomCount,
+        basePrice: basePrice,
+        occupancyRate: occupancyRate,
+        discountFactor: discountFactor,
+        demandMultiplier: demandMultiplier,
+    });
+    if (!m) {
+        return;   // lever half-typed: leave the last valid figures on screen
+    }
+
+    const effectivePrice = m.effectivePrice;
+    const dailyRevenue = m.dailyRevenue;
+    const revpar = m.revpar;
+    const revenueChange = m.revenueChange;
+
     // Update Dashboard Metrics (Current Performance)
-    document.getElementById('adr').textContent = '$' + basePrice.toFixed(2);
+    document.getElementById('adr').textContent = '$' + m.adr.toFixed(2);
     document.getElementById('occupancy').textContent = (occupancyRate * 100).toFixed(0) + '%';
     document.getElementById('revpar').textContent = '$' + revpar.toFixed(2);
     document.getElementById('totalRevenue').textContent = '$' + dailyRevenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -125,21 +200,10 @@ function drawRevenueChart() {
     // Get current revenue
     const currentRevenue = window.currentRevenue || 33750;
     
-    // 7-day projection.
-    //
-    // This used to be Math.random() on every redraw: since the chart is
-    // redrawn on every slider move, the curve jumped around at random and
-    // the effect of the lever you were actually moving got lost in the
-    // noise -- which is the one thing this simulator exists to show.
-    //
-    // The weekly profile is fixed and it is the shape of an urban hotel:
-    // quiet Monday to Thursday, full on Friday and Saturday, checkout
-    // Sunday. The seven factors average exactly 1.0, so the week adds up
-    // to seven times the daily revenue shown in the metrics and the chart
-    // cannot drift away from the numbers next to it.
-    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    const WEEKLY_PROFILE = [0.92, 0.94, 0.97, 1.02, 1.12, 1.15, 0.88];
-    const revenues = WEEKLY_PROFILE.map(factor => currentRevenue * factor);
+    // The profile and the day labels live at the top of the file, where a test
+    // can reach them. See the comment there for why they are not random.
+    const days = WEEKDAYS;
+    const revenues = weeklyProjection(currentRevenue);
     
     // Chart dimensions
     const padding = 40;
@@ -229,4 +293,22 @@ function resetForm() {
     
     calculateRevenue();
     drawRevenueChart();
+}
+
+// ============================================
+// Test hook
+// ============================================
+//
+// The page loads this file with a plain <script> tag, so everything above has
+// to stay in the global scope. This block only exists when the file is required
+// from Node (the test runner) and is invisible to the browser.
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        computeMetrics,
+        weeklyProjection,
+        WEEKLY_PROFILE,
+        WEEKDAYS,
+        initialValues,
+    };
 }
