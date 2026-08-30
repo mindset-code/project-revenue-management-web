@@ -19,4 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Pruebas del simulador
-        run: node --test tests/
+        # Sin argumento a proposito: `node --test tests/` funciona en Node 20
+        # y en Node 22 falla con "Cannot find module .../tests". Sin
+        # argumento descubre **/*.test.mjs en las dos versiones.
+        run: node --test
