@@ -40,7 +40,9 @@ env/
 
 # ── Node / Frontend ────────────────────────────────
 node_modules/
-package-lock.json
+# package-lock.json SI se versiona: es lo que hace que `npm ci`
+# instale exactamente lo mismo que aqui. Ignorarlo deja el comando
+# de instalacion habitual fallando en un clon recien hecho.
 dist/
 build/
 .next/
