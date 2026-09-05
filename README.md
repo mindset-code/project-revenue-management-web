@@ -6,7 +6,7 @@
 
 > 🇬🇧 **English version first.** · 🇪🇸 **La versión en español está más abajo** → [ir a Español](#-español).
 
-[![Ficha del proyecto](https://img.shields.io/badge/Ficha%20del%20proyecto-mindset--code.com-2c4a6e?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://mindset-code.com/es/codigo)
+[![Ficha del proyecto](https://img.shields.io/badge/Ficha%20del%20proyecto-mindset--code.com-2c4a6e?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://mindset-code.com/codigo)
 [![Stack](https://img.shields.io/badge/Stack-HTML%20%C2%B7%20CSS%20%C2%B7%20Vanilla%20JS-f7df1e?style=for-the-badge&logo=javascript&logoColor=black)](.)
 [![Domain](https://img.shields.io/badge/Domain-RevOps%20%C2%B7%20Pricing-16a34a?style=for-the-badge)](.)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
@@ -75,7 +75,7 @@ project-revenue-management-web/
 Released under the **[MIT License](LICENSE)**.
 
 - **Portfolio:** [proyectos-mindset-code.web.app](https://proyectos-mindset-code.web.app)
-- **Web:** [mindset-code.com](https://mindset-code.com/es)
+- **Web:** [mindset-code.com](https://mindset-code.com)
 - **Email:** contacto@mindset-code.com
 
 ---
@@ -150,9 +150,9 @@ project-revenue-management-web/
 Publicado bajo la **[Licencia MIT](LICENSE)**.
 
 - **Portafolio:** [proyectos-mindset-code.web.app](https://proyectos-mindset-code.web.app)
-- **Web:** [mindset-code.com](https://mindset-code.com/es)
+- **Web:** [mindset-code.com](https://mindset-code.com)
 - **Email:** contacto@mindset-code.com
 
 ---
 
-*Mindset & Code · asesoría fiscal y tecnológica · [mindset-code.com](https://mindset-code.com/es)*
+*Mindset & Code · asesoría fiscal y tecnológica · [mindset-code.com](https://mindset-code.com)*
